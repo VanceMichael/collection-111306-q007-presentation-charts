@@ -1,0 +1,12 @@
+{
+  "kind": "presentation-charts",
+  "data": {
+    "package": "capacity.pptx",
+    "selected": [
+      "ppt/slides/slide1.xml"
+    ],
+    "chart": "ppt/charts/chart1.xml",
+    "cachedValue": 105,
+    "workbookValue": 108
+  }
+}

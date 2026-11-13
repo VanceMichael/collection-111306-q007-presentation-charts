@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile,mkdtemp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import * as domain from '../src/domain.mjs';
+const data=JSON.parse(await readFile(new URL('../fixtures/source.json',import.meta.url))).data;
+const {archiveEntries,preview}=domain;
+test('资料对象的领域边界和原始预览',async()=>{const entries=archiveEntries(await readFile(new URL('../fixtures/capacity.pptx',import.meta.url)));
+assert.ok(entries.some(row=>row.name==='ppt/slides/slide2.xml'));
+assert.ok(entries.some(row=>row.name==='ppt/embeddings/ledger.xlsx'));
+assert.throws(()=>archiveEntries(Buffer.from('not a document')));
+assert.equal(preview(data).selected.length,1);});
